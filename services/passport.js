@@ -16,12 +16,15 @@ passport.deserializeUser((id, done) => {
     done(null, user);
   });
 });
+
+// Proxy true for https, let GoogleStrategy decide
 passport.use(
   new GoogleStrategy(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
       callbackURL: "/auth/google/callback",
+      proxy: true,
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleId: profile.id }) //returns a promise, anytime we do anything we DB
