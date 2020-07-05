@@ -4,7 +4,7 @@ const app = express(); // Generates a running application that represents a sing
 // This is a route handler app.get()
 // Arrow function is called automatically when a single request comes in
 app.get("/", (req, res) => {
-  res.send({ hi: "there" });
+  res.send({ hi: "elia" });
 });
 
 // Whenever Heroku/etc has the option to pass environment variables, it will look for these variables
