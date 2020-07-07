@@ -6,11 +6,11 @@ const tar = require("tar");
 
 const Rank = mongoose.model("rankings");
 
-schedule.scheduleJob("45 * * * *", function () {
-  updateFileSystem();
+schedule.scheduleJob("59 * * * *", async function () {
+  await updateFileSystem();
 });
 
-updateFileSystem = async () => {
+let updateFileSystem = async () => {
   try {
     const url = "https://statics.koreanbuilds.net/bulk/latest.tar.gz";
     const arcName = "latest.tar.gz";
@@ -59,8 +59,21 @@ updateFileSystem = async () => {
       }
     }
 
-    console.log(championsObj);
+    await updateDatabase();
   } catch (err) {
     console.error(err);
+  }
+};
+
+let updateDatabase = async (championsObj) => {
+  let ranking = new Rank({
+    rank: championsObj,
+  });
+
+  try {
+    await ranking.save();
+  } catch (err) {
+    // 422: Unprocessable entity
+    res.status(422).send(err);
   }
 };
