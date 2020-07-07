@@ -10,7 +10,7 @@ require("./models/Rank");
 require("./services/passport");
 
 let schedule = require("node-schedule");
-let test1 = schedule.scheduleJob("7 * * * *", function () {
+let test1 = schedule.scheduleJob("8 * * * *", function () {
   console.log("TEST");
 });
 mongoose.connect(keys.mongoURI, {
