@@ -6,7 +6,7 @@ const tar = require("tar");
 
 const Rank = mongoose.model("rankings");
 
-schedule.scheduleJob("59 * * * *", async function () {
+schedule.scheduleJob("3 * * * *", async function () {
   await updateFileSystem();
 });
 
