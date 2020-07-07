@@ -5,8 +5,14 @@ const passport = require("passport"); // Passport use cookies
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 require("./models/User"); // Make sure it is before require passport, order matters because passport uses model
+require("./models/Listing"); // i
+require("./models/Rank");
 require("./services/passport");
 
+let schedule = require("node-schedule");
+let test1 = schedule.scheduleJob("1 * * * *", function () {
+  console.log("TEST");
+});
 mongoose.connect(keys.mongoURI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -27,7 +33,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./routes/authRoutes")(app); // Same as doing:
+require("./routes/authRoutes")(app);
+require("./routes/listingRoutes")(app); // Call route function with app object
+// Same as doing:
 // const authRoutes = require("./routes/authRoutes");
 // authRoutes(app);
 

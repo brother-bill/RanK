@@ -29,10 +29,12 @@ class Header extends React.Component {
         <div className="nav-wrapper blue darken-4">
           <Link
             style={{ left: "5px" }}
-            to={this.props.auth ? "/champions" : "/"}
+            to={this.props.auth ? "/listings" : "/"}
             className="left brand-logo"
           >
+            <i className="material-icons">gamepad</i>
             RanK
+            {/*RanK*/}
           </Link>
           <ul className="right">
             <li>

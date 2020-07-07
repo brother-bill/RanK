@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 import Header from "./Header";
 import Landing from "./Landing";
-const Dashboard = () => <h2>Dashboard</h2>;
-const ChampionsNew = () => <h2>ChampionsNew</h2>;
+import Dashboard from "./Dashboard";
+import ListingsNew from "./listings/ListingsNew";
 
 // <Header />
 //<Route path="/champions/new" exact component={ChampionsNew} />
@@ -15,16 +15,14 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <BrowserRouter>
-          <div>
-            <Header />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/champions" component={Dashboard} />
-            <Route path="/champions/new" component={ChampionsNew} />
-          </div>
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <div className="container">
+          <Header />
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/listings" component={Dashboard} />
+          <Route path="/listings/new" component={ListingsNew} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
