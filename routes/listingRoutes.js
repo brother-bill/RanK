@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
 
 const Listing = mongoose.model("listings");
-const Rank = mongoose.model("rankings");
 
 module.exports = (app) => {
   app.get("/api/listings", requireLogin, async (req, res) => {

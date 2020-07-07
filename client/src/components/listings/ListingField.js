@@ -43,7 +43,7 @@ export default ({ input, label, name, meta: { error, touched } }) => {
         <React.Fragment>
           <label>
             <input type="checkbox" {...input} />
-            <span style={{ width: "125px", color: "Black" }}>{input.name}</span>
+            <span style={{ width: "130px", color: "Black" }}>{input.name}</span>
           </label>
           <div className="red-text" style={{ marginBottom: "20px" }}>
             {touched && error}
@@ -55,7 +55,7 @@ export default ({ input, label, name, meta: { error, touched } }) => {
         <React.Fragment>
           <label>
             <input type="checkbox" {...input} />
-            <span style={{ width: "125px", color: "Black" }}>{input.name}</span>
+            <span style={{ width: "130px", color: "Black" }}>{input.name}</span>
           </label>
         </React.Fragment>
       );
