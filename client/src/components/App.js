@@ -5,8 +5,7 @@ import * as actions from "../actions";
 import Header from "./Header";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
-import ListingsNew from "./listings/ListingsNew";
-
+import ListingsForm from "./listings/ListingsForm";
 // <Header />
 //<Route path="/champions/new" exact component={ChampionsNew} />
 class App extends Component {
@@ -16,11 +15,11 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="container">
+        <div className="ui container inverted">
           <Header />
           <Route exact path="/" component={Landing} />
           <Route exact path="/listings" component={Dashboard} />
-          <Route path="/listings/new" component={ListingsNew} />
+          <Route path="/listings/new" component={ListingsForm} />
         </div>
       </BrowserRouter>
     );

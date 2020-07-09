@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { Icon } from "semantic-ui-react";
+
 class Header extends React.Component {
   renderContent() {
     switch (this.props.auth) {
@@ -10,39 +12,36 @@ class Header extends React.Component {
       // Not logged in
       case false:
         return (
-          <li>
-            <a href="/auth/google">Login with Google</a>
-          </li>
+          <div className="item">
+            <a className="ui blue button inverted" href="/auth/google">
+              Login with Google
+            </a>
+          </div>
         );
       // Logged in
       default:
         return (
-          <li>
-            <a href="/api/logout">Logout</a>
-          </li>
+          <div className="item">
+            <a className="ui red button inverted" href="/api/logout">
+              Logout
+            </a>
+          </div>
         );
     }
   }
   render() {
     return (
-      <nav>
-        <div className="nav-wrapper blue darken-4">
-          <Link
-            style={{ left: "5px" }}
-            to={this.props.auth ? "/listings" : "/"}
-            className="left brand-logo"
-          >
-            <i className="material-icons">gamepad</i>
-            RanK
-            {/*RanK*/}
-          </Link>
-          <ul className="right">
-            <li>
-              <ul>{this.renderContent()}</ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <div className="ui inverted menu">
+        <Link to={this.props.auth ? "/listings" : "/"} className="item">
+          <Icon name="gamepad" />
+          RanK
+        </Link>
+        <ul className="right inverted menu">
+          <li>
+            <ul>{this.renderContent()}</ul>
+          </li>
+        </ul>
+      </div>
     );
   }
 }
@@ -50,4 +49,4 @@ class Header extends React.Component {
 function mapStateToProps(state) {
   return { auth: state.auth };
 }
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));

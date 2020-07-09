@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button, Icon } from "semantic-ui-react";
 const Dashboard = () => {
   return (
     <div>
       Dashboard
-      <div className="fixed-action-btn">
-        <Link to="/listings/new" className="btn-floating btn-large red">
-          <i className="material-icons ">add</i>
-        </Link>
-      </div>
+      <Link to="/listings/new">
+        <Button floated="right" circular icon color="blue" size="massive">
+          <Icon name="add" />
+        </Button>
+      </Link>
     </div>
   );
 };

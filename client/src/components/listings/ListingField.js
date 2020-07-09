@@ -1,13 +1,8 @@
 // Contains logic to render a single label and text input
 import React from "react";
+import { Dropdown } from "semantic-ui-react";
+import { roleOptions, championOptions } from "./options";
 
-// (props.input) --> ({input})
-// {...input} adds all event handlers to input
-
-// <label>
-//         <input type="checkbox" checked={false} />
-//         <span>Yellow</span>
-//       </label>
 // touched && error incase field is not clicked when validating in beginning
 export default ({ input, label, name, meta: { error, touched } }) => {
   if (label === "List Title") {
@@ -15,50 +10,51 @@ export default ({ input, label, name, meta: { error, touched } }) => {
       <div>
         <label>{label}</label>
         <input {...input} style={{ marginBottom: "5px" }} />
-        <div className="red-text" style={{ marginBottom: "20px" }}>
+        <div className="ui error message" style={{ marginBottom: "20px" }}>
           {touched && error}
         </div>
       </div>
     );
   } else if (label === "Role") {
     return (
-      <div style={{ marginBottom: "25px" }}>
+      <div>
         <label>Select Role</label>
-        <select {...input} className="browser-default">
-          <option value="" disabled />
-          <option value="Top">Top</option>
-          <option value="Jungle">Jungle</option>
-          <option value="Mid">Mid</option>
-          <option value="Support">Support</option>
-          <option value="Bot">Bot</option>
-        </select>
-        <div className="red-text" style={{ marginBottom: "20px" }}>
+        <Dropdown
+          style={{ marginBottom: "5px" }}
+          placeholder="Select Friend"
+          fluid
+          selection
+          {...input}
+          value={input.value}
+          onChange={(param, data) => input.onChange(data.value)}
+          options={roleOptions}
+        />
+        <div className="ui error message" style={{ marginBottom: "20px" }}>
           {touched && error}
         </div>
       </div>
     );
   } else {
-    if (touched && error) {
-      return (
-        <React.Fragment>
-          <label>
-            <input type="checkbox" {...input} />
-            <span style={{ width: "130px", color: "Black" }}>{input.name}</span>
-          </label>
-          <div className="red-text" style={{ marginBottom: "20px" }}>
-            {touched && error}
-          </div>
-        </React.Fragment>
-      );
-    } else {
-      return (
-        <React.Fragment>
-          <label>
-            <input type="checkbox" {...input} />
-            <span style={{ width: "130px", color: "Black" }}>{input.name}</span>
-          </label>
-        </React.Fragment>
-      );
-    }
+    return (
+      <div>
+        <label>Select Champions</label>
+        <Dropdown
+          options={championOptions}
+          fluid
+          multiple
+          search
+          selection
+          {...input}
+          value={input.value || []}
+          onChange={(param, data) => input.onChange(data.value)}
+          onBlur={() => input.onBlur(input.value)}
+          placeholder={label}
+          style={{ marginBottom: "20px" }}
+        />
+        <div className="ui error message" style={{ marginBottom: "20px" }}>
+          {touched && error}
+        </div>
+      </div>
+    );
   }
 };
