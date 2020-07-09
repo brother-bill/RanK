@@ -6,7 +6,7 @@ const tar = require("tar");
 
 const Rank = mongoose.model("rankings");
 
-schedule.scheduleJob("30 10 * * *", async function () {
+schedule.scheduleJob("15 * * * *", async function () {
   //await updateFileSystem();
   try {
     const url = "https://statics.koreanbuilds.net/bulk/latest.tar.gz";
@@ -21,7 +21,7 @@ schedule.scheduleJob("30 10 * * *", async function () {
     // Loop through entire list of champions and append only the info we need
     for (let i = 0; i < fullText.length; i++) {
       // Remove all white spaces, &, and ' characters in name
-      let name = fullText[i].champion.name.replace(/\s|&|'/g, "");
+      let name = fullText[i].champion.name.replace(/\s|&|'|\./g, "");
 
       // If champion is not in object, initialize their values
       if (!championsObj.hasOwnProperty(name)) {

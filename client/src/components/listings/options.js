@@ -144,7 +144,7 @@ export const championOptions = [
     key: "ChoGath",
     text: "ChoGath",
     value: "ChoGath",
-    image: { avatar: true, src: "/images/champions/ChoGath.png" },
+    image: { avatar: true, src: "/images/champions/Chogath.png" },
   },
   {
     key: "Corki",
@@ -171,9 +171,9 @@ export const championOptions = [
     image: { avatar: true, src: "/images/champions/Draven.png" },
   },
   {
-    key: "Dr.Mundo",
-    text: "Dr.Mundo",
-    value: "Dr.Mundo",
+    key: "DrMundo",
+    text: "DrMundo",
+    value: "DrMundo",
     image: { avatar: true, src: "/images/champions/DrMundo.png" },
   },
   {
@@ -324,7 +324,7 @@ export const championOptions = [
     key: "KaiSa",
     text: "KaiSa",
     value: "KaiSa",
-    image: { avatar: true, src: "/images/champions/KaiSa.png" },
+    image: { avatar: true, src: "/images/champions/Kaisa.png" },
   },
   {
     key: "Kalista",
@@ -378,7 +378,7 @@ export const championOptions = [
     key: "KhaZix",
     text: "KhaZix",
     value: "KhaZix",
-    image: { avatar: true, src: "/images/champions/KhaZix.png" },
+    image: { avatar: true, src: "/images/champions/Khazix.png" },
   },
   {
     key: "Kindred",
@@ -402,7 +402,7 @@ export const championOptions = [
     key: "LeBlanc",
     text: "LeBlanc",
     value: "LeBlanc",
-    image: { avatar: true, src: "/images/champions/LeBlanc.png" },
+    image: { avatar: true, src: "/images/champions/Leblanc.png" },
   },
   {
     key: "LeeSin",
@@ -816,7 +816,7 @@ export const championOptions = [
     key: "VelKoz",
     text: "VelKoz",
     value: "VelKoz",
-    image: { avatar: true, src: "/images/champions/VelKoz.png" },
+    image: { avatar: true, src: "/images/champions/Velkoz.png" },
   },
   {
     key: "Vi",
