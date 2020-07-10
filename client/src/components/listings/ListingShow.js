@@ -34,7 +34,10 @@ class ListingShow extends React.Component {
 
     return (
       <div>
-        <Image avatar src={`/images/roles/${this.props.listing.role}.png`} />
+        <Image
+          avatar
+          src={`/images/roles/${this.props.listing.role.toLowerCase()}.png`}
+        />
         {this.props.listing.role}
         <List ordered>
           {this.sortObj(this.props.listing.champions, this.props.listing.role)}

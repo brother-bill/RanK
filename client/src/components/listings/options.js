@@ -144,7 +144,7 @@ export const championOptions = [
     key: "ChoGath",
     text: "ChoGath",
     value: "ChoGath",
-    image: { avatar: true, src: "/images/champions/Chogath.png" },
+    image: { avatar: true, src: "/images/champions/ChoGath.png" },
   },
   {
     key: "Corki",
@@ -324,7 +324,7 @@ export const championOptions = [
     key: "KaiSa",
     text: "KaiSa",
     value: "KaiSa",
-    image: { avatar: true, src: "/images/champions/Kaisa.png" },
+    image: { avatar: true, src: "/images/champions/KaiSa.png" },
   },
   {
     key: "Kalista",
@@ -402,7 +402,7 @@ export const championOptions = [
     key: "LeBlanc",
     text: "LeBlanc",
     value: "LeBlanc",
-    image: { avatar: true, src: "/images/champions/Leblanc.png" },
+    image: { avatar: true, src: "/images/champions/LeBlanc.png" },
   },
   {
     key: "LeeSin",
@@ -528,7 +528,7 @@ export const championOptions = [
     key: "NunuWillump",
     text: "NunuWillump",
     value: "NunuWillump",
-    image: { avatar: true, src: "/images/champions/Nunu.png" },
+    image: { avatar: true, src: "/images/champions/NunuWillump.png" },
   },
   {
     key: "Olaf",
@@ -816,7 +816,7 @@ export const championOptions = [
     key: "VelKoz",
     text: "VelKoz",
     value: "VelKoz",
-    image: { avatar: true, src: "/images/champions/Velkoz.png" },
+    image: { avatar: true, src: "/images/champions/VelKoz.png" },
   },
   {
     key: "Vi",
