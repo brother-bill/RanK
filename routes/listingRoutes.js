@@ -57,7 +57,6 @@ module.exports = (app) => {
     });
 
     try {
-      console.log(listing);
       await listing.save(); // Probably increment counter so we have max number of listings
       //req.user.credits -= 1;
       //const user = await req.user.save();
