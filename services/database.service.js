@@ -8,7 +8,7 @@ const champions = require("lol-champions");
 const Rank = mongoose.model("rankings");
 const Listing = mongoose.model("listings");
 
-schedule.scheduleJob("17 * * * *", async function () {
+schedule.scheduleJob("30 10 * * *", async function () {
   //await updateFileSystem();
   try {
     const url = "https://statics.koreanbuilds.net/bulk/latest.tar.gz";
