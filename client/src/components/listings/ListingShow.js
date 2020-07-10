@@ -16,7 +16,11 @@ class ListingShow extends React.Component {
     return sortedArr.map((val) => {
       return (
         <List.Item key={val[0]}>
-          <Image size="tiny" avatar src={`/images/champions/${val[0]}.png`} />
+          <Image
+            size="tiny"
+            avatar
+            src={`/images/champions/${val[0].toLowerCase()}.png`}
+          />
           <List.Content>
             <List.Header>{val[0]}</List.Header>
             {val[1][role]}
