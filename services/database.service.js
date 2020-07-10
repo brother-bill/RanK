@@ -3,10 +3,12 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const rp = require("request-promise");
 const tar = require("tar");
+const champions = require("lol-champions");
 
 const Rank = mongoose.model("rankings");
+const Listing = mongoose.model("listings");
 
-schedule.scheduleJob("15 * * * *", async function () {
+schedule.scheduleJob("17 * * * *", async function () {
   //await updateFileSystem();
   try {
     const url = "https://statics.koreanbuilds.net/bulk/latest.tar.gz";
@@ -56,6 +58,19 @@ schedule.scheduleJob("15 * * * *", async function () {
       }
     }
 
+    champions.forEach((champ) => {
+      let newChamp = champ.name.replace(/\s|&|'|\./g, "");
+      if (!championsObj[newChamp]) {
+        championsObj[newChamp] = {
+          Mid: 0,
+          Support: 0,
+          Jungle: 0,
+          Top: 0,
+          Bot: 0,
+        };
+      }
+    });
+
     await Rank.deleteMany({});
 
     //await updateDatabase();
@@ -65,7 +80,17 @@ schedule.scheduleJob("15 * * * *", async function () {
     });
 
     await ranking.save();
+
+    //await updateAllListings();
   } catch (err) {
     console.error(err);
   }
 });
+
+updateAllListings = async () => {
+  let rankings = await Rank.find({});
+  //console.log(rankings);
+  await Listing.updateMany({}, { $set: { champions: { hi: "bye" } } });
+  let listings = await Listing.find({});
+  console.log(listings);
+};

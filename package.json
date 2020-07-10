@@ -23,6 +23,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
+    "lol-champions": "^10.14.1",
     "mongoose": "^5.9.21",
     "node-schedule": "^1.3.2",
     "nodemon": "^2.0.4",
@@ -30,6 +31,7 @@
     "passport-google-oauth20": "^2.0.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
+    "shortid": "^2.2.15",
     "tar": "^6.0.2"
   }
 }

@@ -6,6 +6,7 @@ import Header from "./Header";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import ListingsForm from "./listings/ListingsForm";
+import ListingShow from "./listings/ListingShow";
 // <Header />
 //<Route path="/champions/new" exact component={ChampionsNew} />
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route exact path="/" component={Landing} />
           <Route exact path="/listings" component={Dashboard} />
           <Route path="/listings/new" component={ListingsForm} />
+          <Route path="/listings/:id" component={ListingShow} />
         </div>
       </BrowserRouter>
     );
