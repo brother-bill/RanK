@@ -27,17 +27,6 @@ class ListingList extends React.Component {
               <Button
                 onClick={(e) => {
                   e.stopPropagation();
-                  history.push(`/listings/edit/${shortid}`);
-                }}
-                size="large"
-                floated="right"
-                color="blue"
-              >
-                Edit
-              </Button>
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation();
                   history.push(`/listings/delete/${shortid}`);
                 }}
                 size="large"
@@ -45,6 +34,17 @@ class ListingList extends React.Component {
                 color="red"
               >
                 Delete
+              </Button>
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  history.push(`/listings/edit/${shortid}`);
+                }}
+                size="large"
+                floated="right"
+                color="blue"
+              >
+                Edit
               </Button>
             </Card.Meta>
             <Card.Description>{`Role: ${role}`}</Card.Description>
