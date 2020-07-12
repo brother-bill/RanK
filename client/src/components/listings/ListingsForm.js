@@ -3,11 +3,14 @@ import React from "react";
 import { reduxForm, Field } from "redux-form"; // Helps communicate with redux store, similar to connect()
 import ListingField from "./ListingField";
 import { Link, withRouter } from "react-router-dom";
-import * as actions from "../../actions";
+import { createList } from "../../actions";
 import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
 
 class ListingsForm extends React.Component {
+  onSubmit = (formValues) => {
+    this.props.onSubmit(formValues);
+  };
   renderFields() {
     return (
       <div>
@@ -24,9 +27,7 @@ class ListingsForm extends React.Component {
       <div>
         <form
           className="ui error form"
-          onSubmit={this.props.handleSubmit((values) => {
-            this.props.submitList(values, this.props.history);
-          })}
+          onSubmit={this.props.handleSubmit(this.onSubmit)}
         >
           {this.renderFields()}
 
@@ -65,4 +66,4 @@ const formWrapped = reduxForm({
   form: "listingsForm",
 })(ListingsForm);
 
-export default connect(null, actions)(withRouter(formWrapped));
+export default connect(null, { createList })(withRouter(formWrapped));

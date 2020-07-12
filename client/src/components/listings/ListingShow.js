@@ -14,7 +14,6 @@ class ListingShow extends React.Component {
     );
 
     return sortedArr.map((val) => {
-      console.log(val[0]);
       return (
         <List.Item key={val[0]}>
           <Image
@@ -33,12 +32,13 @@ class ListingShow extends React.Component {
 
   // check undefined
   render() {
-    if (!this.props.listing.champions) {
-      return <div></div>;
+    if (!this.props.listing) {
+      return <React.Fragment></React.Fragment>;
     }
 
     return (
       <div>
+        <h1>{this.props.listing.title}</h1>
         <Image
           avatar
           src={`/images/roles/${this.props.listing.role.toLowerCase()}.png`}
@@ -53,8 +53,8 @@ class ListingShow extends React.Component {
 }
 
 // State is global state
-function mapStateToProps(state) {
-  return { listing: state.listing };
+function mapStateToProps(state, ownProps) {
+  return { listing: state.listings[ownProps.match.params.id] };
 }
 
 export default connect(mapStateToProps, { fetchListing })(ListingShow);

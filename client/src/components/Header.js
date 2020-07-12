@@ -2,8 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
-
+import { fetchUser } from "../actions";
 class Header extends React.Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
   renderContent() {
     switch (this.props.auth) {
       // Fetching if logged in
@@ -49,4 +52,4 @@ class Header extends React.Component {
 function mapStateToProps(state) {
   return { auth: state.auth };
 }
-export default connect(mapStateToProps)(withRouter(Header));
+export default connect(mapStateToProps, { fetchUser })(withRouter(Header));

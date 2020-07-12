@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 //rank: [{type: Object, default: {}} ],
 const rankSchema = new Schema(
   {
-    rank: { type: Object, default: {} },
+    rank: { type: Schema.Types.Mixed },
     lastUpdated: { type: Date, default: Date.now() },
   },
   { minimize: false }
