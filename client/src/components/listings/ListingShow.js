@@ -44,7 +44,7 @@ class ListingShow extends React.Component {
           src={`/images/roles/${this.props.listing.role.toLowerCase()}.png`}
         />
         {this.props.listing.role}
-        <List ordered>
+        <List inverted={this.props.theme !== "true"} ordered>
           {this.sortObj(this.props.listing.champions, this.props.listing.role)}
         </List>
       </div>
@@ -54,7 +54,10 @@ class ListingShow extends React.Component {
 
 // State is global state
 function mapStateToProps(state, ownProps) {
-  return { listing: state.listings[ownProps.match.params.id] };
+  return {
+    listing: state.listings[ownProps.match.params.id],
+    theme: state.theme,
+  };
 }
 
 export default connect(mapStateToProps, { fetchListing })(ListingShow);

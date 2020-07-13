@@ -7,6 +7,8 @@ import {
   DELETE_LISTING,
   CREATE_LISTING,
   EDIT_LISTING,
+  CHANGE_THEME,
+  GET_THEME,
 } from "./types";
 
 export const fetchUser = () => async (dispatch) => {
@@ -43,4 +45,19 @@ export const deleteListing = (id) => async (dispatch) => {
   await axios.delete(`/api/listing/delete/${id}`);
   dispatch({ type: DELETE_LISTING, payload: id });
   history.push("/listings");
+};
+
+export const changeTheme = () => async (dispatch) => {
+  if (localStorage.getItem("dark") === "true") {
+    localStorage.setItem("dark", "false");
+  } else {
+    localStorage.setItem("dark", "true");
+  }
+  dispatch({ type: CHANGE_THEME, payload: localStorage.getItem("dark") });
+};
+
+export const getTheme = () => async (dispatch) => {
+  let dark = localStorage.getItem("dark") || "true";
+
+  dispatch({ type: GET_THEME, payload: dark });
 };

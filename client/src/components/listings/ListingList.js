@@ -17,10 +17,10 @@ class ListingList extends React.Component {
         <Card
           fluid
           key={shortid}
-          color="black"
+          color="blue"
           onClick={() => history.push(`/listings/show/${shortid}`)}
         >
-          <Card.Content>
+          <Card.Content color="red">
             <Card.Header>{title}</Card.Header>
             <Card.Meta>
               {`Created: ${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`}

@@ -11,57 +11,76 @@ import ListingDelete from "./listings/ListingDelete";
 import ListingEdit from "./listings/ListingEdit";
 import history from "../history";
 import PrivateRoute from "./PrivateRoute";
-// <Header />
-//<Route path="/champions/new" exact component={ChampionsNew} />
+import { ThemeProvider, createGlobalStyle } from "styled-components";
+
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
+    this.props.getTheme();
   }
 
   render() {
-    return (
-      <Router history={history}>
-        <div className="ui container inverted">
-          <Header />
-          <Route exact path="/" component={Landing} />
-          <PrivateRoute
-            auth={this.props.auth}
-            exact
-            path="/listings"
-            component={Dashboard}
-          />
+    const GlobalStyle = createGlobalStyle`
+    body{
+      background-color: ${() =>
+        this.props.theme === "false" ? "#2e2d2d" : "#EEE"};
+      color: ${() => (this.props.theme === "false" ? "#EEE" : "#2e2d2d")}
+    }
+    `;
 
-          <PrivateRoute
-            auth={this.props.auth}
-            exact
-            path="/listings/new"
-            component={ListingsCreate}
-          />
-          <PrivateRoute
-            auth={this.props.auth}
-            exact
-            path="/listings/show/:id"
-            component={ListingShow}
-          />
-          <PrivateRoute
-            auth={this.props.auth}
-            exact
-            path="/listings/delete/:id"
-            component={ListingDelete}
-          />
-          <PrivateRoute
-            auth={this.props.auth}
-            exact
-            path="/listings/edit/:id"
-            component={ListingEdit}
-          />
-        </div>
-      </Router>
+    return (
+      <ThemeProvider
+        theme={{ mode: this.props.theme === "true" ? "dark" : "light" }}
+      >
+        <React.Fragment>
+          <GlobalStyle />
+          <Router history={history}>
+            <div className="ui container inverted">
+              <Header />
+              <Route exact path="/" component={Landing} />
+              <PrivateRoute
+                auth={this.props.auth}
+                exact
+                path="/listings"
+                component={Dashboard}
+              />
+
+              <PrivateRoute
+                auth={this.props.auth}
+                exact
+                path="/listings/new"
+                component={ListingsCreate}
+              />
+              <PrivateRoute
+                auth={this.props.auth}
+                exact
+                path="/listings/show/:id"
+                component={ListingShow}
+              />
+              <PrivateRoute
+                auth={this.props.auth}
+                exact
+                path="/listings/delete/:id"
+                component={ListingDelete}
+              />
+              <PrivateRoute
+                auth={this.props.auth}
+                exact
+                path="/listings/edit/:id"
+                component={ListingEdit}
+              />
+            </div>
+          </Router>
+        </React.Fragment>
+      </ThemeProvider>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { auth: state.auth };
+  return {
+    auth: state.auth,
+    theme: state.theme,
+  };
 }
 export default connect(mapStateToProps, actions)(App);
