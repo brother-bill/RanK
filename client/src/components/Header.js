@@ -19,14 +19,14 @@ class Header extends React.Component {
         return (
           <React.Fragment>
             <div className="item">
-              <a
+              <button
                 className={`ui ${color} button inverted`}
                 onClick={() => {
                   this.props.changeTheme();
                 }}
               >
                 Theme
-              </a>
+              </button>
             </div>
             <div className="item">
               <a className={"ui blue button inverted"} href="/auth/google">
@@ -40,14 +40,14 @@ class Header extends React.Component {
         return (
           <React.Fragment>
             <div className="item">
-              <a
+              <button
                 className={`ui ${color} button inverted`}
                 onClick={() => {
                   this.props.changeTheme();
                 }}
               >
                 Theme
-              </a>
+              </button>
             </div>
             <div className="item">
               <a className="ui red button inverted" href="/api/logout">

@@ -48,16 +48,23 @@ export const deleteListing = (id) => async (dispatch) => {
 };
 
 export const changeTheme = () => async (dispatch) => {
-  if (localStorage.getItem("dark") === "true") {
+  let dark = localStorage.getItem("dark");
+  console.log(dark);
+  if (dark === null) {
+    localStorage.setItem("dark", "true");
+    dark = "true";
+  } else if (dark === "true") {
+    dark = "false";
     localStorage.setItem("dark", "false");
   } else {
+    dark = "true";
     localStorage.setItem("dark", "true");
   }
-  dispatch({ type: CHANGE_THEME, payload: localStorage.getItem("dark") });
+  dispatch({ type: CHANGE_THEME, payload: dark });
 };
 
 export const getTheme = () => async (dispatch) => {
-  let dark = localStorage.getItem("dark") || "true";
+  let dark = localStorage.getItem("dark") || "false";
 
   dispatch({ type: GET_THEME, payload: dark });
 };

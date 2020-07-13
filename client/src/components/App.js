@@ -23,8 +23,8 @@ class App extends Component {
     const GlobalStyle = createGlobalStyle`
     body{
       background-color: ${() =>
-        this.props.theme === "false" ? "#2e2d2d" : "#EEE"};
-      color: ${() => (this.props.theme === "false" ? "#EEE" : "#2e2d2d")}
+        this.props.theme === "true" ? "#2e2d2d" : "#EEE"};
+      color: ${() => (this.props.theme === "true" ? "#EEE" : "#2e2d2d")}
     }
     `;
 
