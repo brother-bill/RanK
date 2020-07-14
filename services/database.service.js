@@ -87,10 +87,10 @@ let func = async () => {
       lastUpdated: Date.now(),
     });
 
-    console.log(championsObj);
+    //console.log(championsObj);
     await ranking.save();
     await updateAllListings();
-    process.exit();
+    //process.exit();
   } catch (err) {
     console.error(err);
     process.exit(1);
