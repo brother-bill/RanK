@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import { Icon, Menu } from "semantic-ui-react";
+import { Icon, Menu, Button } from "semantic-ui-react";
 import { fetchUser, changeTheme } from "../actions";
 
 class Header extends React.Component {
@@ -9,7 +9,7 @@ class Header extends React.Component {
     this.props.fetchUser();
   }
   renderContent() {
-    let color = this.props.theme === "true" ? "blue" : "grey";
+    let color = this.props.theme === "true" ? "yellow" : "green";
     switch (this.props.auth) {
       // Fetching if logged in
       case null:
@@ -19,19 +19,20 @@ class Header extends React.Component {
         return (
           <React.Fragment>
             <div className="item">
-              <button
-                className={`ui ${color} button inverted`}
+              <Button
+                basic
+                color={color}
                 onClick={() => {
                   this.props.changeTheme();
                 }}
               >
                 Theme
-              </button>
+              </Button>
             </div>
             <div className="item">
-              <a className={"ui blue button inverted"} href="/auth/google">
+              <Button className="ui blue button inverted" href="/auth/google">
                 Login with Google
-              </a>
+              </Button>
             </div>
           </React.Fragment>
         );
@@ -40,19 +41,20 @@ class Header extends React.Component {
         return (
           <React.Fragment>
             <div className="item">
-              <button
-                className={`ui ${color} button inverted`}
-                onClick={() => {
+              <Button
+                basic
+                color={color}
+                onClick={(e) => {
                   this.props.changeTheme();
                 }}
               >
                 Theme
-              </button>
+              </Button>
             </div>
             <div className="item">
-              <a className="ui red button inverted" href="/api/logout">
+              <Button className="ui red button inverted" href="/api/logout">
                 Logout
-              </a>
+              </Button>
             </div>
           </React.Fragment>
         );

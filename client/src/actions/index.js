@@ -49,7 +49,6 @@ export const deleteListing = (id) => async (dispatch) => {
 
 export const changeTheme = () => async (dispatch) => {
   let dark = localStorage.getItem("dark");
-  console.log(dark);
   if (dark === null) {
     localStorage.setItem("dark", "true");
     dark = "true";

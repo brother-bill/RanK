@@ -34,7 +34,7 @@ app.use(passport.session());
 
 require("./routes/authRoutes")(app);
 require("./routes/listingRoutes")(app); // Call route function with app object
-require("./services/database.service");
+//require("./services/database.service");
 
 // Same as doing:
 // const authRoutes = require("./routes/authRoutes");

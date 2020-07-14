@@ -36,7 +36,6 @@ module.exports = (app) => {
     );
 
     let listing = await Listing.find({ shortid: req.params.id });
-    console.log("LISTING", listing);
     res.send(listing[0]);
   });
 

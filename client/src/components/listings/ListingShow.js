@@ -44,7 +44,7 @@ class ListingShow extends React.Component {
           src={`/images/roles/${this.props.listing.role.toLowerCase()}.png`}
         />
         {this.props.listing.role}
-        <List inverted={this.props.theme !== "true"} ordered>
+        <List inverted={this.props.theme === "true"} ordered>
           {this.sortObj(this.props.listing.champions, this.props.listing.role)}
         </List>
       </div>
