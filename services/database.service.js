@@ -5,11 +5,19 @@ const rp = require("request-promise");
 const tar = require("tar");
 const champions = require("lol-champions");
 
+require("../models/Listing"); // i
+require("../models/Rank");
+const keys = require("../config/keys");
+mongoose.connect(keys.mongoURI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 const Rank = mongoose.model("rankings");
 const Listing = mongoose.model("listings");
 
-schedule.scheduleJob("55 * * * *", async function () {
-  //await updateFileSystem();
+//schedule.scheduleJob("55 * * * *", async function () {
+//await updateFileSystem();
+let func = async () => {
   try {
     const url = "https://statics.koreanbuilds.net/bulk/latest.tar.gz";
     const arcName = "latest.tar.gz";
@@ -79,12 +87,16 @@ schedule.scheduleJob("55 * * * *", async function () {
       lastUpdated: Date.now(),
     });
 
+    console.log(championsObj);
     await ranking.save();
     await updateAllListings();
+    process.exit();
   } catch (err) {
     console.error(err);
+    process.exit(1);
   }
-});
+};
+//});
 
 updateAllListings = async () => {
   let rankings = await Rank.find({});
@@ -155,3 +167,5 @@ updateAllListings = async () => {
   //   console.log(listing);
   // });
 };
+
+func();
