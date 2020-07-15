@@ -5,13 +5,13 @@ const rp = require("request-promise");
 const tar = require("tar");
 const champions = require("lol-champions");
 
-// require("../models/Listing"); // i
-// require("../models/Rank");
-// const keys = require("../config/keys");
-// mongoose.connect(keys.mongoURI, {
-//   useUnifiedTopology: true,
-//   useNewUrlParser: true,
-// });
+require("../models/Listing");
+require("../models/Rank");
+const keys = require("../config/keys");
+mongoose.connect(keys.mongoURI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 const Rank = mongoose.model("rankings");
 const Listing = mongoose.model("listings");
 
