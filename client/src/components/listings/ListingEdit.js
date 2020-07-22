@@ -26,8 +26,6 @@ class ListingEdit extends React.Component {
       return <div>Loading</div>;
     }
 
-    //["champions"]: this.getChampions(this.props.listing.champions)
-
     return (
       <div>
         <h3>Edit Listing</h3>

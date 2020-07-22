@@ -28,6 +28,7 @@ class App extends Component {
     }
     `;
 
+    // We wrap our application with a theme provider so we can set the text colors and background accordingly
     return (
       <ThemeProvider
         theme={{ mode: this.props.theme === "true" ? "dark" : "light" }}

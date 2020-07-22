@@ -2,10 +2,12 @@ import React from "react";
 
 import { Route, Redirect } from "react-router-dom";
 
+// Any routes that require you to be logged in will use this private route
 class PrivateRoute extends React.Component {
   render() {
     const { component: Component, auth, ...rest } = this.props;
     switch (auth) {
+      // Checking if logged in
       case null:
         return <div></div>;
       // Not logged in

@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchListing, deleteListing } from "../../actions";
 
-// React fragment to fix responsive buttons
 class ListingDelete extends React.Component {
   componentDidMount() {
     this.props.fetchListing(this.props.match.params.id);
@@ -12,6 +11,7 @@ class ListingDelete extends React.Component {
   renderActions() {
     const id = this.props.match.params.id;
     return (
+      // React fragment to fix responsive buttons
       <React.Fragment>
         <button
           onClick={() => this.props.history.push("/listings")}
@@ -53,9 +53,12 @@ class ListingDelete extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { listing: state.listings[ownProps.match.params.id] };
+  return {
+    listing: state.listings[ownProps.match.params.id],
+  };
 };
 
-export default connect(mapStateToProps, { fetchListing, deleteListing })(
-  withRouter(ListingDelete)
-);
+export default connect(mapStateToProps, {
+  fetchListing,
+  deleteListing,
+})(withRouter(ListingDelete));

@@ -1,3 +1,4 @@
+// Contains all the form values specific to each image
 export const roleOptions = [
   {
     key: "Top",

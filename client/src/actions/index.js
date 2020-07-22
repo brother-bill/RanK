@@ -17,7 +17,6 @@ export const fetchUser = () => async (dispatch) => {
 };
 
 export const createListing = (values) => async (dispatch) => {
-  //console.log(values);
   const res = await axios.post("/api/listings", values);
   history.push("/listings");
   dispatch({ type: CREATE_LISTING, payload: res.data });
@@ -35,13 +34,11 @@ export const fetchListings = () => async (dispatch) => {
 };
 
 export const fetchListing = (id) => async (dispatch) => {
-  //console.log("FETCH LISTING INDEX ACTION", id);
   const res = await axios.get("/api/listing", { params: { id: id } });
   dispatch({ type: FETCH_LISTING, payload: res.data });
 };
 
 export const deleteListing = (id) => async (dispatch) => {
-  //console.log("DELETING INDEX ACTION", id);
   await axios.delete(`/api/listing/delete/${id}`);
   dispatch({ type: DELETE_LISTING, payload: id });
   history.push("/listings");
@@ -64,6 +61,5 @@ export const changeTheme = () => async (dispatch) => {
 
 export const getTheme = () => async (dispatch) => {
   let dark = localStorage.getItem("dark") || "false";
-
   dispatch({ type: GET_THEME, payload: dark });
 };

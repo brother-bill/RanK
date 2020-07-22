@@ -37,6 +37,7 @@ class Header extends React.Component {
           </React.Fragment>
         );
 
+      // Logged in
       default:
         return (
           <React.Fragment>
