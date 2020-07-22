@@ -16,8 +16,8 @@ export const fetchUser = () => async (dispatch) => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const createList = (values) => async (dispatch) => {
-  console.log(values);
+export const createListing = (values) => async (dispatch) => {
+  //console.log(values);
   const res = await axios.post("/api/listings", values);
   history.push("/listings");
   dispatch({ type: CREATE_LISTING, payload: res.data });

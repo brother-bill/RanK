@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
-//const Schema = mongoose.Schema; Same as below
-const { Schema } = mongoose;
+const { Schema } = mongoose; // Same as, const Schema = mongoose.Schema;
 const shortid = require("shortid");
-const tester = shortid.generate();
 const listingSchema = new Schema({
   _user: { type: Schema.Types.ObjectId, ref: "User" },
   shortid: { type: String, unique: true, default: shortid.generate },
@@ -12,4 +10,4 @@ const listingSchema = new Schema({
   dateCreated: { type: Date, default: Date.now },
 });
 
-mongoose.model("listings", listingSchema); // 2 arguments mean load into mongoose, 1 means load out like in passport.js
+mongoose.model("listings", listingSchema); // 2 arguments mean load into mongoose, 1 means load out

@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createList } from "../../actions";
+import { createListing } from "../../actions";
 import ListingsForm from "./ListingsForm";
 
 class ListingCreate extends React.Component {
   onSubmit = (formValues) => {
-    this.props.createList(formValues);
+    this.props.createListing(formValues);
   };
   render() {
     return (
@@ -17,4 +17,4 @@ class ListingCreate extends React.Component {
   }
 }
 
-export default connect(null, { createList })(ListingCreate);
+export default connect(null, { createListing })(ListingCreate);

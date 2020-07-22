@@ -15,9 +15,8 @@ mongoose.connect(keys.mongoURI, {
 const Rank = mongoose.model("rankings");
 const Listing = mongoose.model("listings");
 
-//schedule.scheduleJob("55 * * * *", async function () {
-//await updateFileSystem();
-let func = async () => {
+// Every 24 hours, this function will retreive the updated information and update the DB and all listings
+const updateDB = async () => {
   try {
     const url = "https://statics.koreanbuilds.net/bulk/latest.tar.gz";
     const arcName = "latest.tar.gz";
@@ -66,6 +65,8 @@ let func = async () => {
       }
     }
 
+    // Some champions are not included in the tar file if they are never played
+    // So we loop through a list of updated champions and set default 0 values for them
     champions.forEach((champ) => {
       let newChamp = champ.name.replace(/\s|&|'|\./g, "");
       if (!championsObj[newChamp]) {
@@ -79,93 +80,51 @@ let func = async () => {
       }
     });
 
-    //console.log(championsObj);
+    // Delete current rankings
     await Rank.deleteMany({});
 
+    // Create and save the new rankings
     let ranking = new Rank({
       rank: championsObj,
       lastUpdated: Date.now(),
     });
-
-    //console.log(championsObj);
     await ranking.save();
+
+    // Update all listings according to new rankings
     await updateAllListings();
-    //process.exit();
   } catch (err) {
-    console.error(err);
     process.exit(1);
   }
 };
-//});
 
+// Update all listings according to new rankings
 updateAllListings = async () => {
-  let rankings = await Rank.find({});
-  //console.log(rankings);
-  //await Listing.updateMany({}, { $set: { champions: { hi: "bye" } } });
-  //let listings = await Listing.find({});
-  //console.log(listings);
-
-  // const entries = listings.map(async (listing) => {
-  //   let champions = [];
-  //   listing["champions"];
-  //   for (let key in listing["champions"]) {
-  //     champions.push([`rank.${key}`, 1]);
-  //   }
-  //   let projection = Object.fromEntries(champions);
-  //   let finding = await Rank.find({}, projection);
-  //   return finding;
-  //   //return champions;
-  // });
-  let rankingDB = rankings[0]["rank"];
-
-  // await Listing.find({}, (err, listings) => {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  //   listings.map(async (listing) => {
-  //     let champions = [];
-  //     for (let key in listing["champions"]) {
-  //       champions.push([`rank.${key}`, 1]);
-  //     }
-  //     let projection = Object.fromEntries(champions);
-  //     let finding = await Rank.find({}, projection);
-  //     return finding;
-  //   });
-  // });
+  let rankings = await Rank.find({}); // Find all rankings
+  let rankingDB = rankings[0]["rank"]; // We only care about rank parameter in rankings
 
   await Listing.find({}, (err, listings) => {
     if (err) {
       console.log(err);
     }
-    listings.forEach(async (listing) => {
-      //console.log(listing);
-      let championsUpdate = {};
-      for (let key in listing["champions"]) {
-        championsUpdate[key] = rankingDB[key];
+    // Loop through all listings
+    const loopListings = async () => {
+      console.log("start");
+      for (let i = 0; i < listings.length; i++) {
+        let championsUpdate = {};
+        // Loop through all champions in each listing
+        for (let key in listings[i]["champions"]) {
+          championsUpdate[key] = rankingDB[key];
+        }
+
+        // Update each listing with new rankings of all champions that were already in the listing
+        await Listing.updateOne(
+          { _id: listings[i]._id },
+          { $set: { champions: championsUpdate } }
+        );
       }
-
-      await Listing.updateOne(
-        { _id: listing._id },
-        { $set: { champions: championsUpdate } }
-      );
-    });
+    };
+    loopListings();
   });
-
-  //console.log(entries);
-  // const entries = listings.map((listing) => {
-  //   let champions = [];
-  //   listing["champions"];
-  //   for (let key in listing["champions"]) {
-  //     champions.push([`rank.${key}`, 1]);
-  //   }
-  //   return champions;
-  // });
-  // const projection = Object.fromEntries(entries);
-  // console.log("entries", entries);
-  // console.log("project", projection);
-  // listings.forEach(async (listing) => {
-  //   console.log(listing);
-  // });
 };
 
-func();
+updateDB();

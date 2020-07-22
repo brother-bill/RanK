@@ -4,23 +4,24 @@ const cookieSession = require("cookie-session"); // Get access to cookies
 const passport = require("passport"); // Passport use cookies
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
-let cors = require("cors");
+const cors = require("cors");
 
 require("./models/User"); // Make sure it is before require passport, order matters because passport uses model
-require("./models/Listing"); // i
+require("./models/Listing");
 require("./models/Rank");
-require("./services/passport");
+require("./services/passport.service");
 
+// Connect to mongo session, extra parameters are to remove deprecation warnings
 mongoose.connect(keys.mongoURI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 });
+
 const app = express(); // Generates a running application that represents a single app
 
-// maxAge = millseconds, 30 days
 // app.use() uses middlewares, each middleware takes that object and modifies req object slightly, preprocessing
-// middlewares before route handlers, most about
-// These 4 intercept all routes
+// Middlewares before route handlers
+// These 5 intercept all routes
 app.use(bodyParser.json());
 app.use(cors());
 app.use(
@@ -32,17 +33,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./routes/authRoutes")(app);
-require("./routes/listingRoutes")(app); // Call route function with app object
-//require("./services/database.service");
-
-// Same as doing:
-// const authRoutes = require("./routes/authRoutes");
-// authRoutes(app);
+// 2 different ways to use route, could switch but will leave as is for reference
+require("./routes/passport.router")(app);
+app.use("/api", require("./routes/listing.router"));
 
 if (process.env.NODE_ENV === "production") {
+  // If client is trying to access route that we did not create a route handler for, try to see if it is handled in client side
   // Express will serve up production assetts
   app.use(express.static("client/build"));
+
+  // Order of operation, if there the client also does not handle the route, then serve the index.html file
   // Express will serve up index.html if all previous attempts to match resource failed
   const path = require("path");
   app.get("*", (req, res) => {

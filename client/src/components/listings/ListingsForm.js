@@ -3,7 +3,7 @@ import React from "react";
 import { reduxForm, Field } from "redux-form"; // Helps communicate with redux store, similar to connect()
 import ListingField from "./ListingField";
 import { Link, withRouter } from "react-router-dom";
-import { createList } from "../../actions";
+import { createListing } from "../../actions";
 import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
 
@@ -66,4 +66,4 @@ const formWrapped = reduxForm({
   form: "listingsForm",
 })(ListingsForm);
 
-export default connect(null, { createList })(withRouter(formWrapped));
+export default connect(null, { createListing })(withRouter(formWrapped));
