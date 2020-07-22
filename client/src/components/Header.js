@@ -9,7 +9,7 @@ class Header extends React.Component {
     this.props.fetchUser();
   }
   renderContent() {
-    let color = this.props.theme === "true" ? "yellow" : "green";
+    let color = this.props.theme === "true" ? "green" : "yellow";
     switch (this.props.auth) {
       // Fetching if logged in
       case null:

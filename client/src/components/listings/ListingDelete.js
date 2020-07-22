@@ -35,7 +35,7 @@ class ListingDelete extends React.Component {
     if (!this.props.listing) {
       return "Are you sure you want to delete this listing?";
     }
-    return `Are you sure you want to delete stream with title: ${this.props.listing.title}`;
+    return `Are you sure you want to delete listing with title: ${this.props.listing.title}`;
   }
 
   render() {
