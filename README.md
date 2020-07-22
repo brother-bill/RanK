@@ -1,4 +1,6 @@
 # [RanK](https://rugged-hot-springs-35104.herokuapp.com/)
+**Note:** Since I am using Heroku's free hobby plan, the application will go to sleep after being inactive for some time. This will cause a noticeable delay when starting up the application again.
+
 RanK is a fully deployed web application created using the MERN stack.
 It allows a user to authenticate through Google OAuth and create listings that rank specific characters based on popularity.
 
