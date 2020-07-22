@@ -30,8 +30,8 @@ class ListingShow extends React.Component {
     });
   }
 
-  // check undefined
   render() {
+    // Check if undefined
     if (!this.props.listing) {
       return <React.Fragment></React.Fragment>;
     }
@@ -39,11 +39,16 @@ class ListingShow extends React.Component {
     return (
       <div>
         <h1>{this.props.listing.title}</h1>
+
+        <h2 style={{ display: "inline" }}>
+          {this.props.listing.role} Popularity
+        </h2>
         <Image
+          style={{ marginBottom: "5px" }}
           avatar
           src={`/images/roles/${this.props.listing.role.toLowerCase()}.png`}
         />
-        {this.props.listing.role}
+
         <List inverted={this.props.theme === "true"} ordered>
           {this.sortObj(this.props.listing.champions, this.props.listing.role)}
         </List>

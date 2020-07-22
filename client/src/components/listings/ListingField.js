@@ -9,7 +9,7 @@ export default ({ input, label, name, meta: { error, touched } }) => {
     return (
       <div>
         <label>{label}</label>
-        <input {...input} style={{ marginBottom: "5px" }} />
+        <input placeholder="Title" {...input} style={{ marginBottom: "5px" }} />
         <div className="ui error message" style={{ marginBottom: "20px" }}>
           {touched && error}
         </div>
@@ -21,7 +21,7 @@ export default ({ input, label, name, meta: { error, touched } }) => {
         <label>Select Role</label>
         <Dropdown
           style={{ marginBottom: "5px" }}
-          placeholder="Select Friend"
+          placeholder="Role"
           fluid
           selection
           {...input}
