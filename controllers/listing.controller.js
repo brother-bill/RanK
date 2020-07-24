@@ -44,10 +44,7 @@ async function editListing(req, res, next) {
 
 async function deleteListing(req, res, next) {
   try {
-    const listing = await listingService.deleteListing(
-      req.user.id,
-      req.params.id
-    );
+    await listingService.deleteListing(req.user.id, req.params.id);
     res.send({});
   } catch (err) {
     console.log("DELTE ERR", err);
