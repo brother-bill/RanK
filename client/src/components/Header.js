@@ -31,7 +31,7 @@ class Header extends React.Component {
             </div>
             <div className="item">
               <Button className="ui blue button inverted" href="/auth/google">
-                Login with Google
+                Google Login
               </Button>
             </div>
           </React.Fragment>
