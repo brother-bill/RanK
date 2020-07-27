@@ -19,6 +19,17 @@ class App extends Component {
     this.props.getTheme();
   }
 
+  // We can redirect a user to the listings page if they request home page when logged in
+  renderAuth(auth) {
+    switch (auth) {
+      case null:
+        return null;
+      case false:
+        return Landing;
+      default:
+        return Dashboard;
+    }
+  }
   render() {
     const GlobalStyle = createGlobalStyle`
     body{
@@ -38,7 +49,11 @@ class App extends Component {
           <Router history={history}>
             <div className="ui container inverted">
               <Header />
-              <Route exact path="/" component={Landing} />
+              <Route
+                exact
+                path="/"
+                component={this.renderAuth(this.props.auth)}
+              />
               <PrivateRoute
                 auth={this.props.auth}
                 exact

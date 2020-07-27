@@ -8,6 +8,7 @@ class Header extends React.Component {
   componentDidMount() {
     this.props.fetchUser();
   }
+
   renderContent() {
     let color = this.props.theme === "true" ? "green" : "yellow";
     switch (this.props.auth) {
@@ -57,6 +58,7 @@ class Header extends React.Component {
                 Logout
               </Button>
             </div>
+            {}
           </React.Fragment>
         );
     }
@@ -67,7 +69,7 @@ class Header extends React.Component {
       <Menu color="black" inverted>
         <Link to={this.props.auth ? "/listings" : "/"} className="item">
           <Icon name="gamepad" />
-          RanK
+          Home
         </Link>
         <Menu.Menu position="right">{this.renderContent()}</Menu.Menu>
       </Menu>
